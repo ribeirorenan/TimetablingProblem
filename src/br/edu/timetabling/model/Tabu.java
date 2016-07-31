@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author Rodrigo
+ * @author Rodrigo tes
  */
 public class Tabu {
 
