@@ -25,8 +25,6 @@ public class PCC02 {
         //System.out.println(horario);
         horario.constroiTabela();
         System.out.println(horario.tabelaToString());
-        
-
     }
 
 }

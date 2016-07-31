@@ -34,11 +34,8 @@ public class Util {
                 }
                 
                 return s.substring(0, i);
-                
-                
             }
         }
         return "";
     }
-
 }
