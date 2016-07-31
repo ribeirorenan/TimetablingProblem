@@ -39,6 +39,9 @@ public class HorarioEscolar {
     public HorarioEscolar() {
 
     }
+    /*
+    Função para ler o arquivo e construir o horario saca?
+     */
 
     public void constroiHorarioPorArquivo(String nomeArquivo) {
 
