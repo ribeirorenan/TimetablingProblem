@@ -16,12 +16,12 @@ import java.io.IOException;
 public class HorarioEscolar {
 
     String nome;
-    static Integer qntMaterias;
-    static Integer qntSalas;
+    static Integer quantidadeMaterias;
+    static Integer quantidadeSalas;
     static Integer diasLetivos;
     static Integer periodosPorDia;
-    static Integer qntTurma;
-    static Integer qntRestricoes;
+    static Integer quantidadeTurmas;
+    static Integer quantidadeRestricoes;
 
     public static List<Materia> materias = new ArrayList<>();
     public static List<Sala> salas = new ArrayList<>();
@@ -170,19 +170,19 @@ public class HorarioEscolar {
     }
 
     public Integer getQntMaterias() {
-        return qntMaterias;
+        return quantidadeMaterias;
     }
 
     public void setQntMaterias(Integer qntMaterias) {
-        this.qntMaterias = qntMaterias;
+        this.quantidadeMaterias = qntMaterias;
     }
 
     public Integer getQntSalas() {
-        return qntSalas;
+        return quantidadeSalas;
     }
 
     public void setQntSalas(Integer qntSalas) {
-        this.qntSalas = qntSalas;
+        this.quantidadeSalas = qntSalas;
 
     }
 
@@ -203,24 +203,24 @@ public class HorarioEscolar {
     }
 
     public Integer getQntTurma() {
-        return qntTurma;
+        return quantidadeTurmas;
     }
 
     public void setQntTurma(Integer qntTurma) {
-        this.qntTurma = qntTurma;
+        this.quantidadeTurmas = qntTurma;
     }
 
     public Integer getQntRestricoes() {
-        return qntRestricoes;
+        return quantidadeRestricoes;
     }
 
     public void setQntRestricoes(Integer qntRestricoes) {
-        this.qntRestricoes = qntRestricoes;
+        this.quantidadeRestricoes = qntRestricoes;
     }
 
     @Override
     public String toString() {
-        return "HorarioEscolar{" + "nome=" + nome + ", qntMaterias=" + qntMaterias + ", qntSalas=" + qntSalas + ", dias=" + diasLetivos + ", periodosPorDia=" + periodosPorDia + ", qntTurma=" + qntTurma + ", qntRestricoes=" + qntRestricoes + ", materias=" + materias + ", salas=" + salas + '}';
+        return "HorarioEscolar{" + "nome=" + nome + ", quantidadeMaterias=" + quantidadeMaterias + ", quantidadeSalas=" + quantidadeSalas + ", dias=" + diasLetivos + ", periodosPorDia=" + periodosPorDia + ", quantidadeTurmas=" + quantidadeTurmas + ", quantidadeRestricoes=" + quantidadeRestricoes + ", materias=" + materias + ", salas=" + salas + '}';
     }
 
     public static Materia buscaMateriaPorNome(String nome) {
@@ -327,7 +327,7 @@ public class HorarioEscolar {
      */
     public static int retornaSalaAula(Aula aula) {
         for (int i = 0; i < periodosPorDia * diasLetivos; i++) {
-            for (int j = 0; j < qntSalas; j++) {
+            for (int j = 0; j < quantidadeSalas; j++) {
                 if (tabelaHorario[j][i] == aula) {
                     return j;
                 }
@@ -372,7 +372,7 @@ public class HorarioEscolar {
 
     public void constroiTabela() {
 
-        tabelaHorario = new Aula[qntSalas][diasLetivos * periodosPorDia];
+        tabelaHorario = new Aula[quantidadeSalas][diasLetivos * periodosPorDia];
         aulasConflitantes = new int[getTotalAulas()][getTotalAulas()];
         horariosDisponiveis = new int[getTotalAulas()][diasLetivos * periodosPorDia];
         int valor = 0;
