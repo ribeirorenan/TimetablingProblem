@@ -21,7 +21,7 @@ public class PCC02 {
 
         Scanner ler = new Scanner(System.in);
         HorarioEscolar horario = new HorarioEscolar();
-        horario.controiHorarioPorArquivo("dataset01.txt");
+        horario.constroiHorarioPorArquivo("dataset01.txt");
         //System.out.println(horario);
         horario.constroiTabela();
         System.out.println(horario.tabelaToString());

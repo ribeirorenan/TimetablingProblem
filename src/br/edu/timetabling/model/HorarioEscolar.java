@@ -40,7 +40,7 @@ public class HorarioEscolar {
 
     }
 
-    public void controiHorarioPorArquivo(String nomeArquivo) {
+    public void constroiHorarioPorArquivo(String nomeArquivo) {
 
         try {
             FileReader arq = new FileReader(nomeArquivo);
