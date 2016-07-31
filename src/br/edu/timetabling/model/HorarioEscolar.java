@@ -13,10 +13,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-/**
- *
- * @author Rodrigo
- */
 public class HorarioEscolar {
 
     String nome;
@@ -41,7 +37,7 @@ public class HorarioEscolar {
     }
 
     public void constroiHorarioPorArquivo(String nomeArquivo) {
-
+        //Teste de Push
         try {
             FileReader arq = new FileReader(nomeArquivo);
             BufferedReader lerArq = new BufferedReader(arq);
