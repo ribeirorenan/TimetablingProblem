@@ -111,17 +111,16 @@ public class HorarioEscolar {
                     }
 
                     case "CURRICULA": {
-
                         for (int i = 1; i <= this.getQntTurma(); i++) {
                             linha = lerArq.readLine();
                             Curricula newCurricula = new Curricula();
                             newCurricula.setCurriculumId(Util.buscaPalavra(linha));
                             int qntMaterias = (Integer.valueOf(Util.buscaPalavra(Util.restante)));
-
                             for (int j = 1; j < qntMaterias; j++) {
-                                newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
+                              newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
+//                                newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
                             }
-                            newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.restante));
+//                            newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.restante));
                             this.curriculas.add(newCurricula);
 
                         }
@@ -157,10 +156,20 @@ public class HorarioEscolar {
     }
 
     public String toString(){
+
         System.out.println("Cursos: ");
         for (Course course : courses) {
             System.out.print(course.toString());
+            System.out.println();
         }
+        System.out.println();
+
+
+        System.out.println("Salas: ");
+        for (Room room: rooms) {
+            System.out.println(room.toString());
+        }
+
 
         return "";
     }

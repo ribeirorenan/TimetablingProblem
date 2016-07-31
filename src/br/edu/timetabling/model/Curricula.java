@@ -1,5 +1,6 @@
 package br.edu.timetabling.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ public class Curricula {
     private List<Course> courses;
 
     public Curricula() {
+        courses = new ArrayList<>();
     }
 
 
