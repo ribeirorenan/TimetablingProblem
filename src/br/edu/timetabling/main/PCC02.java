@@ -8,10 +8,6 @@ package br.edu.timetabling.main;
 import br.edu.timetabling.model.HorarioEscolar;
 import java.util.Scanner;
 
-/**
- *
- * @author Rodrigo
- */
 public class PCC02 {
 
     /**
