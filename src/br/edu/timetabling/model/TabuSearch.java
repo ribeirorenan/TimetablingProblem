@@ -61,16 +61,16 @@ public class TabuSearch {
         return null;
     }
 
-    private List<Room> getAvaibleRooms(Course course){
-        List<Room> roomsAvaible = new ArrayList<Room>();
+    private List<Room> getAvailableRooms(Course course){
+        List<Room> roomsAvailable = new ArrayList<Room>();
 
         for (Room room : rooms){
             if (room.getCapacity() >= course.getNumberOfStudents()) {
-                roomsAvaible.add(room);
+                roomsAvailable.add(room);
             }
         }
 
-        return roomsAvaible;
+        return roomsAvailable;
     }
 
     /*

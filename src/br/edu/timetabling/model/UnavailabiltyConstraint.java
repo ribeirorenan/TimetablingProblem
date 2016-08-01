@@ -32,4 +32,12 @@ public class UnavailabiltyConstraint {
     public void setPeriodOfDay(int periodOfDay) {
         this.periodOfDay = periodOfDay;
     }
+
+    @Override
+    public String toString() {
+        return "UnavailabiltyConstraint{" +
+                "day=" + day +
+                ", periodOfDay=" + periodOfDay +
+                '}';
+    }
 }

@@ -13,6 +13,7 @@ public class Course {
     private int minWorkingDays;
     private int numberOfStudents;
     private List<UnavailabiltyConstraint> unavailabiltyConstraints;
+    private CourseTime courseTime;
 
     static final Course FREE = new Course("free", Teacher.TEACHER, Integer.BYTES, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
@@ -27,6 +28,7 @@ public class Course {
         this.minWorkingDays = minWorkingDays;
         this.numberOfStudents = numberOfStudents;
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
+        this.courseTime = new CourseTime(0, 0, 0);
     }
 
     public String getName() {
