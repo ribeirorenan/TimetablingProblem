@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by renan on 8/1/16.
+ * Created by renan
  */
 public class TabuSearch {
     /*
@@ -72,6 +72,8 @@ public class TabuSearch {
 
         return roomsAvailable;
     }
+
+
 
     /*
      * Getters and Setters

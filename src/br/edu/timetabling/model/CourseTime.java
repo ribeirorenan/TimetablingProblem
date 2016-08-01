@@ -1,7 +1,7 @@
 package br.edu.timetabling.model;
 
 /**
- * Created by renan on 8/1/16.
+ * Created by renan
  */
 public class CourseTime {
     private int day;

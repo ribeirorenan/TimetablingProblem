@@ -13,10 +13,6 @@ import java.io.IOException;
 
 import br.edu.timetabling.model.*;
 
-/**
- *
- * @author Rodrigo
- */
 public class HorarioEscolar {
 
     String nome;

@@ -5,7 +5,7 @@ import br.edu.timetabling.model.TabuSearch;
 import br.edu.timetabling.model.TimeTable;
 
 /**
- * Created by renan on 7/31/16.
+ * Created by renan
  */
 
 public class Main {

@@ -5,10 +5,6 @@
  */
 package br.edu.timetabling.Util;
 
-/**
- *
- * @author Rodrigo
- */
 public class Util {
 
     public static int indicePalavra;
