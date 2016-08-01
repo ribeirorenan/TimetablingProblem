@@ -11,10 +11,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import br.edu.timetabling.model.Course;
-import br.edu.timetabling.model.Curricula;
-import br.edu.timetabling.model.Room;
-import br.edu.timetabling.model.Teacher;
+import br.edu.timetabling.model.*;
 
 /**
  *
@@ -116,31 +113,32 @@ public class HorarioEscolar {
                             Curricula newCurricula = new Curricula();
                             newCurricula.setCurriculumId(Util.buscaPalavra(linha));
                             int qntMaterias = (Integer.valueOf(Util.buscaPalavra(Util.restante)));
+                            newCurricula.setNumberOfCourses(qntMaterias);
                             for (int j = 1; j < qntMaterias; j++) {
-                              newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
-//                                newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
+                                newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
+
                             }
-//                            newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.restante));
+                            newCurricula.addCourse(this.buscaMateriaPorNome(Util.restante));
                             this.curriculas.add(newCurricula);
 
                         }
                         break;
                     }
 
-//                    case "UNAVAILABILITY_CONSTRAINTS": {
-//                        linha = lerArq.readLine();
-//                        while (!Util.buscaPalavra(linha).equals("")) {
-//
-//                            Materia m = this.buscaMateriaPorNome(Util.buscaPalavra(linha));
-//                            Periodo h = new Periodo();
-//                            h.setDia(Integer.valueOf(Util.buscaPalavra(Util.restante)));
-//                            h.setHora(Integer.valueOf(Util.restante));
-//                            m.restricoes.add(h);
-//                            linha = lerArq.readLine();
-//                        }
-//
-//                        break;
-//                    }
+                    case "UNAVAILABILITY_CONSTRAINTS": {
+                        linha = lerArq.readLine();
+                        while (!Util.buscaPalavra(linha).equals("")) {
+
+                            Course course = this.buscaMateriaPorNome(Util.buscaPalavra(linha));
+                            UnavailabiltyConstraint unavailabiltyConstraint = new UnavailabiltyConstraint();
+                            unavailabiltyConstraint.setDay(Integer.valueOf(Util.buscaPalavra(Util.restante)));
+                            unavailabiltyConstraint.setPeriodOfDay(Integer.valueOf(Util.restante));
+                            course.addUnavailabilityConstraints(unavailabiltyConstraint);
+                            linha = lerArq.readLine();
+                        }
+
+                        break;
+                    }
 
                 }
 
@@ -170,6 +168,10 @@ public class HorarioEscolar {
             System.out.println(room.toString());
         }
 
+        System.out.println("Turmas: ");
+        for (Curricula curricula : curriculas) {
+            System.out.println(curricula.toString());
+        }
 
         return "";
     }

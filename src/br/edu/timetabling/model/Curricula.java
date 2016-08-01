@@ -39,4 +39,26 @@ public class Curricula {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    public boolean addCourse(Course course){
+        this.courses.add(course);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+
+        String cursos = "";
+
+//        for (Course course :
+//                courses) {
+//            cursos += course.toStringName() + " ";
+//        }
+
+        return "Curricula{" +
+                "curriculumId='" + curriculumId + '\'' +
+                ", numberOfCourses=" + numberOfCourses +
+                ", courses: " + cursos +
+                '}';
+    }
 }

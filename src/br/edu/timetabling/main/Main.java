@@ -9,6 +9,6 @@ public class Main {
     public static void main(String[] args) {
         HorarioEscolar horarioEscolar = new HorarioEscolar();
         horarioEscolar.constroiHorarioPorArquivo("dataset01.txt");
-//        horarioEscolar.toString();
+        horarioEscolar.toString();
     }
 }

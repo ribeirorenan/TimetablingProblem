@@ -1,5 +1,8 @@
 package br.edu.timetabling.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by renan on 7/31/16.
  */
@@ -9,10 +12,11 @@ public class Course {
     private int numberOfLectures;
     private int minWorkingDays;
     private int numberOfStudents;
+    private List<UnavailabiltyConstraint> unavailabiltyConstraints;
 
 
     public Course() {
-
+        this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
     }
 
     public Course(String name, Teacher teacher, int numberOfLectures, int minWorkingDays, int numberOfStudents) {
@@ -21,6 +25,7 @@ public class Course {
         this.numberOfLectures = numberOfLectures;
         this.minWorkingDays = minWorkingDays;
         this.numberOfStudents = numberOfStudents;
+        this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
     }
 
     public String getName() {
@@ -63,6 +68,12 @@ public class Course {
         this.numberOfStudents = numberOfStudents;
     }
 
+
+    public boolean addUnavailabilityConstraints(UnavailabiltyConstraint unavailabiltyConstraint){
+        this.unavailabiltyConstraints.add(unavailabiltyConstraint);
+        return  true;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -72,5 +83,20 @@ public class Course {
                 ", minWorkingDays=" + minWorkingDays +
                 ", numberOfStudents=" + numberOfStudents +
                 '}';
+    }
+
+    public String toStringName() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+
+    public List<UnavailabiltyConstraint> getUnavailabiltyConstraints() {
+        return unavailabiltyConstraints;
+    }
+
+    public void setUnavailabiltyConstraints(List<UnavailabiltyConstraint> unavailabiltyConstraints) {
+        this.unavailabiltyConstraints = unavailabiltyConstraints;
     }
 }
