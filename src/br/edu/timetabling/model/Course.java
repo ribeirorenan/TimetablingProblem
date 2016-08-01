@@ -14,6 +14,7 @@ public class Course {
     private int numberOfStudents;
     private List<UnavailabiltyConstraint> unavailabiltyConstraints;
 
+    static final Course FREE = new Course("free", Teacher.TEACHER, Integer.BYTES, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
     public Course() {
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
