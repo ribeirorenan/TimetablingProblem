@@ -30,15 +30,17 @@ public class TabuSearch {
 
 
     public void start(){
-
+        /* Gera a solução incial */
+        TimeTable timeTableInicial = initialSolution();
     }
 
     /*
      * Cria solução inicial da tabela de horário
      */
-    private TabuSearch initialSolution() {
+    private TimeTable initialSolution() {
+        for (Course course : courses) {
 
-
+        }
 
         return null;
     }

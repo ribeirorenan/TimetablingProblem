@@ -27,6 +27,7 @@ public class Main {
          */
 
         TabuSearch tabuSearch = horarioEscolar.getTabuSearch();
+        tabuSearch.start();
 
     }
 }

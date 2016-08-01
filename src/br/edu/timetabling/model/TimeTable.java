@@ -10,6 +10,10 @@ public class TimeTable {
 
     private Course [][][] horario;
 
+    private int days;
+    private int periodsOfDay;
+    private int rooms;
+
     public TimeTable() {
 
     }
@@ -20,11 +24,11 @@ public class TimeTable {
      */
 
     public boolean addCourse(Course course, CourseTime courseTime){
-        int day = courseTime.getDay();
-        int periodOfDay = courseTime.getPeriodOfday();
-        int room = courseTime.getRoom();
-        if(horario[day][periodOfDay][room] == Course.FREE){
-            horario[day][periodOfDay][room] = course;
+        days = courseTime.getDay();
+        periodsOfDay = courseTime.getPeriodOfday();
+        rooms = courseTime.getRoom();
+        if(horario[days][periodsOfDay][rooms] == Course.FREE){
+            horario[days][periodsOfDay][rooms] = course;
             return true;
         }
         return false;
@@ -81,5 +85,29 @@ public class TimeTable {
         }
 
         return " ";
+    }
+
+    public int getDays() {
+        return days;
+    }
+
+    public void setDays(int days) {
+        this.days = days;
+    }
+
+    public int getPeriodsOfDay() {
+        return periodsOfDay;
+    }
+
+    public void setPeriodsOfDay(int periodsOfDay) {
+        this.periodsOfDay = periodsOfDay;
+    }
+
+    public int getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
     }
 }
