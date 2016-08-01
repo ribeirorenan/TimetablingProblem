@@ -69,9 +69,11 @@ public class TabuSearch {
                     while(!listOfCourseTimes.isEmpty()){
                         Random random = new Random();
                         int courseTimePosition = random.nextInt(listOfCourseTimes.size());
-                        if(timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition))){
-                            listOfCourseTimes.remove(courseTimePosition);
-                            break;
+                        if (checkScheduleConflict(course, listOfCourseTimes.get(courseTimePosition))) {
+                            if (timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition))) {
+                                listOfCourseTimes.remove(courseTimePosition);
+                                break;
+                            }
                         }
                         listOfCourseTimes.remove(courseTimePosition);
                     }
@@ -84,7 +86,7 @@ public class TabuSearch {
     }
 
     private boolean courseTimeAvailable(Course course, CourseTime courseTime){
-        if(getAvailableRoomsCapacity(course, courseTime) && getAvailableTimes(course, courseTime) && checkScheduleConflict(course, courseTime)){
+        if(getAvailableRoomsCapacity(course, courseTime) && getAvailableTimes(course, courseTime)){
             return true;
         }
 
@@ -140,7 +142,7 @@ public class TabuSearch {
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
 
         for (int i = 0; i < timeTable.getRooms(); i++) {
-            if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].equals(course)){
+            if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getName().equals(course.getName())){
                 return false;
             }
         }
