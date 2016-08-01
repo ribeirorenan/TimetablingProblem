@@ -12,8 +12,8 @@ public class Main {
         HorarioEscolar horarioEscolar = new HorarioEscolar();
         horarioEscolar.constroiHorarioPorArquivo("entrada.txt");
         //horarioEscolar.toString();
-        TimeTable table = new TimeTable(horarioEscolar.getQntSalas(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getDiasLetivos());
-        table.setFreeTime(horarioEscolar.getQntSalas(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getDiasLetivos());
-        table.toString(horarioEscolar.getQntSalas(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getDiasLetivos());
+        TimeTable table = new TimeTable(horarioEscolar.getDiasLetivos(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getQntSalas());
+        table.setFreeTime(horarioEscolar.getDiasLetivos(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getQntSalas());
+        table.toString(horarioEscolar.getDiasLetivos(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getQntSalas());
     }
 }

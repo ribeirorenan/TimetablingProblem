@@ -17,8 +17,8 @@ public class TimeTable {
         this.horario = horario;
     }
 
-    public TimeTable(int rooms, int periods, int days) {
-        this.horario = new Course[rooms][periods][days];
+    public TimeTable(int days, int periods, int rooms) {
+        this.horario = new Course[days][periods][rooms];
     }
 
     public Course[][][] getHorario() {
@@ -29,23 +29,23 @@ public class TimeTable {
         this.horario = horario;
     }
     
-    public void setFreeTime(int rooms, int periods, int days){
-        for (int i = 0; i < rooms; i++) {
+    public void setFreeTime(int days, int periods, int rooms){
+        for (int i = 0; i < days; i++) {
             for (int j = 0; j < periods; j++) {
-                for (int k = 0; k < days; k++) {
+                for (int k = 0; k < rooms; k++) {
                     this.horario[i][j][k] = Course.FREE;
                 }
             }
         }
     }
 
-    public String toString(int rooms, int periods, int days) {
+    public String toString(int days, int rooms, int periods) {
         System.out.println("Horário: ");
         System.out.println();
 
-        for (int i = 0; i < rooms; i++) {
+        for (int i = 0; i < days; i++) {
             for (int j = 0; j < periods; j++) {
-                for (int k = 0; k < days; k++) {
+                for (int k = 0; k < rooms; k++) {
                     System.out.print(this.horario[i][j][k].getName() + "  ");
                 }
                 System.out.println();
