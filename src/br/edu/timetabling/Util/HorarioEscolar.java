@@ -20,7 +20,7 @@ import br.edu.timetabling.model.*;
 public class HorarioEscolar {
 
     String nome;
-    static Integer qntMaterias;
+    static Integer quantidadeMaterias;
     static Integer qntSalas;
     static Integer diasLetivos;
     static Integer periodosPorDia;
@@ -187,11 +187,11 @@ public class HorarioEscolar {
     }
 
     public Integer getQntMaterias() {
-        return qntMaterias;
+        return quantidadeMaterias;
     }
 
     public void setQntMaterias(Integer qntMaterias) {
-        this.qntMaterias = qntMaterias;
+        this.quantidadeMaterias = qntMaterias;
     }
 
     public Integer getQntSalas() {
