@@ -39,6 +39,7 @@ public class TabuSearch {
     private TabuSearch initialSolution() {
 
 
+
         return null;
     }
 
@@ -52,13 +53,12 @@ public class TabuSearch {
 
     private List<Course> getTopDownCourseList(){
 
-        for (Course course : courses) {
 
+        for (Course course : courses) {
 
         }
 
         return null;
-
     }
 
     private List<Room> getAvaibleRooms(Course course){

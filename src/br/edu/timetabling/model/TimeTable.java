@@ -14,6 +14,31 @@ public class TimeTable {
 
     }
 
+
+    /*
+     * Funções auxiliares
+     */
+
+    public boolean addCourse(Course course, CourseTime courseTime){
+        int day = courseTime.getDay();
+        int periodOfDay = courseTime.getPeriodOfday();
+        int room = courseTime.getRoom();
+        if(horario[day][periodOfDay][room] == Course.FREE){
+            horario[day][periodOfDay][room] = course;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean switchCourses(){
+        return false;
+    }
+
+    /*
+     * Getters and Setters
+     */
+
+
     public TimeTable(Course[][][] horario) {
         this.horario = horario;
     }
