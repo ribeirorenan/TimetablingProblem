@@ -40,13 +40,13 @@ public class TimeTable {
         }
     }
 
-    public String toString(int days, int rooms, int periods) {
+    public String toString(int days, int periods, int rooms) {
         System.out.println("Horário: ");
         System.out.println();
 
         for (int i = 0; i < days; i++) {
-            for (int j = 0; j < rooms; j++) {
-                for (int k = 0; k < periods; k++) {
+            for (int j = 0; j < periods; j++) {
+                for (int k = 0; k < rooms; k++) {
                     System.out.print(this.horario[i][j][k].getName() + "  ");
                 }
                 System.out.println();
