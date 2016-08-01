@@ -84,7 +84,7 @@ public class TabuSearch {
     }
 
     private boolean courseTimeAvailable(Course course, CourseTime courseTime){
-        if(getAvailableRoomsCapacity(course, courseTime)){
+        if(getAvailableRoomsCapacity(course, courseTime) && getAvailableTimes(course, courseTime)){
             return true;
         }
 
@@ -100,6 +100,10 @@ public class TabuSearch {
     private List<Course> getTopDownCourseList(){
 
 
+        for (Course course : courses) {
+
+        }
+
         return null;
     }
 
@@ -114,7 +118,6 @@ public class TabuSearch {
 
         return roomsAvailableCapacity;
     }
-
     private boolean getAvailableRoomsCapacity(Course course, CourseTime courseTime){
         if(course.getNumberOfLectures() <= rooms.get(courseTime.getRoom()).getCapacity()){
             return true;
@@ -122,20 +125,17 @@ public class TabuSearch {
         return false;
     }
 
-//    private List<Room> getAvailableTimes(Course course){
-//
-//        List<Room> roomsAvailableCapacity = getAvailableRoomsCapacity(course);
-//
-//        List<UnavailabiltyConstraint> constraintList = course.getUnavailabiltyConstraints();
-//
-//        for (Room room : roomsAvailableCapacity){
-//            for (UnavailabiltyConstraint constraint: constraintList) {
-//
-//            }
-//        }
-//
-//        return ;
-//    }
+    private boolean getAvailableTimes(Course course, CourseTime courseTime){
+
+        List<UnavailabiltyConstraint> constraintList = course.getUnavailabiltyConstraints();
+        for (UnavailabiltyConstraint constraint: constraintList) {
+            if (constraint.getDay() == courseTime.getDay() && constraint.getPeriodOfDay() == courseTime.getPeriodOfday()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 
 
