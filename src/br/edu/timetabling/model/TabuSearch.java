@@ -53,7 +53,6 @@ public class TabuSearch {
 
 
                         if(courseTimeAvailable(course, new CourseTime(i, j, k))){
-
                             listOfCourseTimes.add(new CourseTime(i, j, k));
                         }
 
@@ -67,10 +66,16 @@ public class TabuSearch {
              */
             if(course.getNumberOfLectures() < listOfCourseTimes.size()){
                 for (int i = 0; i < course.getNumberOfLectures(); i++) {
-                    Random random = new Random();
-                    int courseTimePosition = random.nextInt(listOfCourseTimes.size());
-                    timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition));
-                    listOfCourseTimes.remove(courseTimePosition);
+                    while(!listOfCourseTimes.isEmpty()){
+                        Random random = new Random();
+                        int courseTimePosition = random.nextInt(listOfCourseTimes.size());
+                        if(timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition))){
+                            listOfCourseTimes.remove(courseTimePosition);
+                            break;
+                        }
+                        listOfCourseTimes.remove(courseTimePosition);
+                    }
+
                 }
             }
         }
