@@ -31,7 +31,7 @@ public class TimeTable {
         this.horario = horario;
     }
     
-    public void setFreeTime(int days, int periods, int rooms){
+    private void setFreeTime(int days, int periods, int rooms){
         for (int i = 0; i < days; i++) {
             for (int j = 0; j < periods; j++) {
                 for (int k = 0; k < rooms; k++) {
@@ -55,8 +55,6 @@ public class TimeTable {
             System.out.println();
         }
 
-        return "TimeTable{" +
-                "horario=" + Arrays.toString(horario) +
-                '}';
+        return " ";
     }
 }

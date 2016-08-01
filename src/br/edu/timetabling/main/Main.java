@@ -25,6 +25,7 @@ public class Main {
          * A classe HorarioEscolar lê o arquivo de entrada, e proporciona para a classe TabuSearch os dados necessários
          * para a execução do algoritmo da Busca Tabu
          */
+
         TabuSearch tabuSearch = horarioEscolar.getTabuSearch();
 
     }

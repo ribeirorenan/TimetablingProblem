@@ -61,6 +61,17 @@ public class TabuSearch {
 
     }
 
+    private List<Room> getAvaibleRooms(Course course){
+        List<Room> roomsAvaible = new ArrayList<Room>();
+
+        for (Room room : rooms){
+            if (room.getCapacity() >= course.getNumberOfStudents()) {
+                roomsAvaible.add(room);
+            }
+        }
+
+        return roomsAvaible;
+    }
 
     /*
      * Getters and Setters
