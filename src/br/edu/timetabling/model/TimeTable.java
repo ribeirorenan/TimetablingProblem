@@ -45,8 +45,8 @@ public class TimeTable {
         System.out.println();
 
         for (int i = 0; i < days; i++) {
-            for (int j = 0; j < periods; j++) {
-                for (int k = 0; k < rooms; k++) {
+            for (int j = 0; j < rooms; j++) {
+                for (int k = 0; k < periods; k++) {
                     System.out.print(this.horario[i][j][k].getName() + "  ");
                 }
                 System.out.println();
