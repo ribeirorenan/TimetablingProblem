@@ -61,17 +61,32 @@ public class TabuSearch {
         return null;
     }
 
-    private List<Room> getAvailableRooms(Course course){
-        List<Room> roomsAvailable = new ArrayList<Room>();
+    public List<Room> getAvailableRoomsCapacity(Course course){
+        List<Room> roomsAvailableCapacity = new ArrayList<Room>();
 
         for (Room room : rooms){
             if (room.getCapacity() >= course.getNumberOfStudents()) {
-                roomsAvailable.add(room);
+                roomsAvailableCapacity.add(room);
             }
         }
 
-        return roomsAvailable;
+        return roomsAvailableCapacity;
     }
+
+//    private List<Room> getAvailableTimes(Course course){
+//
+//        List<Room> roomsAvailableCapacity = getAvailableRoomsCapacity(course);
+//
+//        List<UnavailabiltyConstraint> constraintList = course.getUnavailabiltyConstraints();
+//
+//        for (Room room : roomsAvailableCapacity){
+//            for (UnavailabiltyConstraint constraint: constraintList) {
+//
+//            }
+//        }
+//
+//        return ;
+//    }
 
 
 
