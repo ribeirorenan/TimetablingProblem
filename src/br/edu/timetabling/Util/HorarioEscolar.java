@@ -30,6 +30,7 @@ public class HorarioEscolar {
     private List<Curricula> curriculas;
     private List<Course> courses;
     private List<Room> rooms;
+    private TimeTable timeTable;
 
     public static int[][] aulasConflitantes;
     public static int[][] horariosDisponiveis;
@@ -38,7 +39,6 @@ public class HorarioEscolar {
         curriculas = new ArrayList<Curricula>();
         courses = new ArrayList<Course>();
         rooms = new ArrayList<Room>();
-
     }
 
     public void constroiHorarioPorArquivo(String nomeArquivo) {
@@ -150,7 +150,18 @@ public class HorarioEscolar {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());
         }
+        /*
+         * seta a instância da timeTable com os dados obtidos
+         */
+        timeTable = new TimeTable(diasLetivos, periodosPorDia, qntSalas);
+    }
 
+    /*
+     * Função que cria uma instância da busca tabu com todos os dados necessários
+     */
+
+    public TabuSearch getTabuSearch(){
+        return new TabuSearch(curriculas, courses, rooms, timeTable);
     }
 
     public String toString(){
