@@ -19,7 +19,7 @@ public class Main {
         int rooms = horarioEscolar.getQntSalas();
 
         TimeTable table = new TimeTable(days, periods, rooms);
-        table.toString(days, periods, rooms);
+//        table.toString(days, periods, rooms);
 
         /*
          * A classe HorarioEscolar lê o arquivo de entrada, e proporciona para a classe TabuSearch os dados necessários
@@ -28,6 +28,8 @@ public class Main {
 
         TabuSearch tabuSearch = horarioEscolar.getTabuSearch();
         tabuSearch.start();
+
+        tabuSearch.getTimeTable().toString(days, periods, rooms);
 
     }
 }

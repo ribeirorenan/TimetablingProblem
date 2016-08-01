@@ -18,48 +18,39 @@ public class TimeTable {
 
     }
 
+    public TimeTable(Course[][][] horario) {
+        this.horario = horario;
+    }
+
+    public TimeTable(int days, int periods, int rooms) {
+        this.days = days;
+        this.periodsOfDay = periods;
+        this.rooms = rooms;
+        this.horario = new Course[days][periods][rooms];
+        setFreeTime(days, periods, rooms);
+    }
+
 
     /*
      * Funções auxiliares
      */
 
     public boolean addCourse(Course course, CourseTime courseTime){
-        days = courseTime.getDay();
-        periodsOfDay = courseTime.getPeriodOfday();
-        rooms = courseTime.getRoom();
-        if(horario[days][periodsOfDay][rooms] == Course.FREE){
-            horario[days][periodsOfDay][rooms] = course;
+        if(horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()] == Course.FREE){
+            horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()] = course;
             return true;
         }
         return false;
     }
 
+//    TODO implement this funcition
     public boolean switchCourses(){
         return false;
     }
 
-    /*
-     * Getters and Setters
-     */
 
 
-    public TimeTable(Course[][][] horario) {
-        this.horario = horario;
-    }
 
-    public TimeTable(int days, int periods, int rooms) {
-        this.horario = new Course[days][periods][rooms];
-        setFreeTime(days, periods, rooms);
-    }
-
-    public Course[][][] getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Course[][][] horario) {
-        this.horario = horario;
-    }
-    
     private void setFreeTime(int days, int periods, int rooms){
         for (int i = 0; i < days; i++) {
             for (int j = 0; j < periods; j++) {
@@ -68,6 +59,19 @@ public class TimeTable {
                 }
             }
         }
+    }
+
+
+    /*
+     * Getters and Setters
+     */
+
+    public Course[][][] getTimeTable() {
+        return horario;
+    }
+
+    public void setTimeTable(Course[][][] horario) {
+        this.horario = horario;
     }
 
     public String toString(int days, int periods, int rooms) {

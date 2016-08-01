@@ -2,6 +2,7 @@ package br.edu.timetabling.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by renan
@@ -29,6 +30,9 @@ public class TabuSearch {
     }
 
 
+    /**
+     * Inicia o algoritmo Tabu Search
+     */
     public void start(){
         /* Gera a solução incial */
         TimeTable timeTableInicial = initialSolution();
@@ -38,14 +42,49 @@ public class TabuSearch {
      * Cria solução inicial da tabela de horário
      */
     private TimeTable initialSolution() {
-        for (Course course : courses) {
 
+        for (Course course : courses) {
+            //Lista com os CourseTimes disponíveis para cada curso
+            List<CourseTime> listOfCourseTimes = new ArrayList<CourseTime>();
+
+            for (int i = 0; i < timeTable.getDays(); i++) {
+                for (int j = 0; j < timeTable.getPeriodsOfDay(); j++) {
+                    for (int k = 0; k < timeTable.getRooms(); k++) {
+
+
+                        if(courseTimeAvailable(course, new CourseTime(i, j, k))){
+
+                            listOfCourseTimes.add(new CourseTime(i, j, k));
+                        }
+
+                    }
+                }
+            }
+
+            /*
+             * Verifica se a quantidade de aulas é menor que a quantidade de salas disponíveis para alocar as aulas.
+             * Após essa verificação, adiciona aulas em salas aleatórias a partir da lista de salas disponíveis
+             */
+            if(course.getNumberOfLectures() < listOfCourseTimes.size()){
+                for (int i = 0; i < course.getNumberOfLectures(); i++) {
+                    Random random = new Random();
+                    int courseTimePosition = random.nextInt(listOfCourseTimes.size());
+                    timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition));
+                    listOfCourseTimes.remove(courseTimePosition);
+                }
+            }
         }
 
         return null;
     }
 
+    private boolean courseTimeAvailable(Course course, CourseTime courseTime){
+        if(getAvailableRoomsCapacity(course, courseTime)){
+            return true;
+        }
 
+        return false;
+    }
 
 
 
@@ -56,14 +95,10 @@ public class TabuSearch {
     private List<Course> getTopDownCourseList(){
 
 
-        for (Course course : courses) {
-
-        }
-
         return null;
     }
 
-    public List<Room> getAvailableRoomsCapacity(Course course){
+    private List<Room> getAvailableRoomsCapacity(Course course){
         List<Room> roomsAvailableCapacity = new ArrayList<Room>();
 
         for (Room room : rooms){
@@ -73,6 +108,13 @@ public class TabuSearch {
         }
 
         return roomsAvailableCapacity;
+    }
+
+    private boolean getAvailableRoomsCapacity(Course course, CourseTime courseTime){
+        if(course.getNumberOfLectures() <= rooms.get(courseTime.getRoom()).getCapacity()){
+            return true;
+        }
+        return false;
     }
 
 //    private List<Room> getAvailableTimes(Course course){
@@ -135,4 +177,6 @@ public class TabuSearch {
     public void setVirtualRoom(ArrayList<Room> virtualRoom) {
         this.virtualRoom = virtualRoom;
     }
+
+
 }
