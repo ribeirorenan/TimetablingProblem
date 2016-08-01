@@ -11,6 +11,7 @@ public class TimeTable {
     private Course [][][] horario;
 
     public TimeTable() {
+
     }
 
     public TimeTable(Course[][][] horario) {
