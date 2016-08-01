@@ -13,10 +13,13 @@ public class Main {
         HorarioEscolar horarioEscolar = new HorarioEscolar();
         horarioEscolar.constroiHorarioPorArquivo("entrada.txt");
         //horarioEscolar.toString();
-        TimeTable table = new TimeTable(horarioEscolar.getDiasLetivos(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getQntSalas());
-        table.setFreeTime(horarioEscolar.getDiasLetivos(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getQntSalas());
-        table.toString(horarioEscolar.getDiasLetivos(), horarioEscolar.getPeriodosPorDia(), horarioEscolar.getQntSalas());
 
+        int days = horarioEscolar.getDiasLetivos();
+        int periods = horarioEscolar.getPeriodosPorDia();
+        int rooms = horarioEscolar.getQntSalas();
+
+        TimeTable table = new TimeTable(days, periods, rooms);
+        table.toString(days, periods, rooms);
 
         /*
          * A classe HorarioEscolar lê o arquivo de entrada, e proporciona para a classe TabuSearch os dados necessários
