@@ -15,6 +15,7 @@ public class TabuSearch {
     private List<Course> courses;
     private List<Room> rooms;
     TimeTable timeTable;
+    int fitness = 0;
 
 
     /*
@@ -42,7 +43,6 @@ public class TabuSearch {
      * Cria solução inicial da tabela de horário
      */
     private TimeTable initialSolution() {
-
         for (Curricula curricula: curriculas) {
             for (Course course: curricula.getCourses()) {
                 course.addCurrilaID(curricula.getCurriculaID());
@@ -50,14 +50,15 @@ public class TabuSearch {
         }
 
         for (Course course : courses) {
-            //Lista com os CourseTimes disponíveis para cada curso
+            //obtem a Lista com os CourseTimes disponíveis para cada curso
             List<CourseTime> listOfCourseTimes = new ArrayList<CourseTime>();
 
             for (int i = 0; i < timeTable.getDays(); i++) {
                 for (int j = 0; j < timeTable.getPeriodsOfDay(); j++) {
                     for (int k = 0; k < timeTable.getRooms(); k++) {
                         //obtem lista de courseTimes disponíveis
-                        if(courseTimeAvailable(course, new CourseTime(i, j, k))){
+                        //todo: verificar softs constraints - courseTimeAvailable
+                        if(getAvailableRoomsCapacity(course, new CourseTime(i, j, k))){
                             listOfCourseTimes.add(new CourseTime(i, j, k));
                         }
 
@@ -88,12 +89,79 @@ public class TabuSearch {
 
                 }
             }
+
             System.out.println("Não inseridas do curso " +course.getName() + ": " + course.getNotInsertedLectures());
 //            System.out.println(course.getName() + " " + course.getListOfCurriculaID().toString());
         }
 
+        fitness = objectiveFunction();
+
+        System.out.println(fitness);
+
+        tabuSearchAlgorithm();
+        System.out.println(fitness);
 
         return null;
+    }
+
+    private int objectiveFunction(){
+        int score = 0;
+        //Time table para ser percorrido
+        Course horario[][][] = timeTable.getTimeTable();
+
+        for (int i = 0; i < timeTable.getDays(); i++) {
+            for (int j = 0; j < timeTable.getPeriodsOfDay(); j++) {
+                for (int k = 0; k < timeTable.getRooms(); k++) {
+                        //verifica se não esta em sala com menor capacidade
+                        if(getAvailableRoomsCapacity(horario[i][j][k], horario[i][j][k].getCourseTime())){
+                            score+= 100;
+                        }
+                        //Verifica as soft Constraints
+                        if(getAvailableTimes(horario[i][j][k], horario[i][j][k].getCourseTime())){
+                            score+= 100;
+                        }
+                        //verifica se não tem conflito de disciplinas do memso curriculo no memso horario
+                        if(checkScheduleConflict(horario[i][j][k], horario[i][j][k].getCourseTime())){
+                            score += 100;
+                        }
+                }
+            }
+        }
+
+        return score;
+    }
+
+
+    private void tabuSearchAlgorithm(){
+        int day1, day2;
+        int period1, period2;
+        int room1, room2;
+
+        Random random = new Random();
+
+        for (int i = 0; i < 9999999; i++) {
+            day1 = random.nextInt(timeTable.getDays());
+            day2 = random.nextInt(timeTable.getDays());
+
+            period1 = random.nextInt(timeTable.getPeriodsOfDay());
+            period2 = random.nextInt(timeTable.getPeriodsOfDay());
+
+            room1 = random.nextInt(timeTable.getRooms());
+            room2 = random.nextInt(timeTable.getRooms());
+
+
+            //realiza o switch
+            timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
+
+            if(objectiveFunction() < fitness){
+                timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1));
+            }
+            else
+            {
+                fitness = objectiveFunction();
+            }
+        }
+
     }
 
     private boolean courseTimeAvailable(Course course, CourseTime courseTime){
@@ -160,7 +228,7 @@ public class TabuSearch {
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
         for (int i = 0; i < timeTable.getRooms(); i++) {
             if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getListOfCurriculaID() == course.getListOfCurriculaID()){
-                System.out.println(course.getName() + " " + course.getListOfCurriculaID());
+
                 return false;
             }
         }

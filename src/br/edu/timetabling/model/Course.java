@@ -15,6 +15,7 @@ public class Course {
     private List<UnavailabiltyConstraint> unavailabiltyConstraints;
     private CourseTime courseTime;
     private List<Integer> listOfCurriculaID;
+    private List<Integer> listOfViolatedConstraints;
 
     /* Gambiarra - Contador para comparar o numero de leituras com as inseridas */
     private int countInsertedLectures;
@@ -24,6 +25,7 @@ public class Course {
     public Course() {
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
         this.listOfCurriculaID = new ArrayList<Integer>();
+        listOfViolatedConstraints = new ArrayList<>();
     }
 
     public Course(String name, Teacher teacher, int numberOfLectures, int minWorkingDays, int numberOfStudents) {
@@ -36,6 +38,7 @@ public class Course {
         this.courseTime = new CourseTime(0, 0, 0);
         this.countInsertedLectures = 0;
         this.listOfCurriculaID = new ArrayList<Integer>();
+        listOfViolatedConstraints = new ArrayList<>();
     }
 
 
@@ -68,13 +71,21 @@ public class Course {
     }
 
 
+    public void addViolatedConstraint(int constraint){
+        this.listOfViolatedConstraints.add(constraint);
+    }
 
     /*
      * Getters and Setters
      */
 
+    public List<Integer> getListOfViolatedConstraints() {
+        return listOfViolatedConstraints;
+    }
 
-
+    public void setListOfViolatedConstraints(List<Integer> listOfViolatedConstraints) {
+        this.listOfViolatedConstraints = listOfViolatedConstraints;
+    }
 
     public CourseTime getCourseTime() {
         return courseTime;

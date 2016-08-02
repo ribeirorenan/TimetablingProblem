@@ -1,5 +1,8 @@
 package br.edu.timetabling.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by renan
  */
@@ -11,6 +14,7 @@ public class TimeTable {
     private int days;
     private int periodsOfDay;
     private int rooms;
+    private List<SwitchCourseTime> tabuList;
 
     public TimeTable() {
 
@@ -25,6 +29,7 @@ public class TimeTable {
         this.periodsOfDay = periods;
         this.rooms = rooms;
         this.horario = new Course[days][periods][rooms];
+        this.tabuList = new ArrayList<>();
         setFreeTime(days, periods, rooms);
     }
 
@@ -36,6 +41,7 @@ public class TimeTable {
     public boolean addCourse(Course course, CourseTime courseTime){
         if(horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()] == Course.FREE){
             horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()] = course;
+            horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()].setCourseTime(courseTime);
             return true;
         }
         return false;
@@ -56,7 +62,9 @@ public class TimeTable {
     }
 
 
-
+    public void addTabu(CourseTime courseTime1, CourseTime courseTime2){
+        tabuList.add(new SwitchCourseTime(courseTime1, courseTime2));
+    }
 
     private void setFreeTime(int days, int periods, int rooms){
         for (int i = 0; i < days; i++) {
@@ -72,6 +80,22 @@ public class TimeTable {
     /*
      * Getters and Setters
      */
+
+    public Course[][][] getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Course[][][] horario) {
+        this.horario = horario;
+    }
+
+    public List<SwitchCourseTime> getTabuList() {
+        return tabuList;
+    }
+
+    public void setTabuList(List<SwitchCourseTime> tabuList) {
+        this.tabuList = tabuList;
+    }
 
     public Course getCourseByCourseTime(CourseTime courseTime){
         return this.horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()];

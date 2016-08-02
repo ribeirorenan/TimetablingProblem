@@ -37,4 +37,13 @@ public class CourseTime {
     public void setRoom(int room) {
         this.room = room;
     }
+
+    @Override
+    public String toString() {
+        return "CourseTime{" +
+                "day=" + day +
+                ", periodOfday=" + periodOfday +
+                ", room=" + room +
+                '}';
+    }
 }
