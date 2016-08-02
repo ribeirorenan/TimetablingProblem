@@ -19,6 +19,7 @@ public class Course {
     private int countInsertedLectures;
 
     static final Course FREE = new Course("free", Teacher.TEACHER, Integer.BYTES, Integer.MIN_VALUE, Integer.MIN_VALUE);
+    static final Course FREE = new Course("livre", Teacher.TEACHER, Integer.BYTES, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
     public Course() {
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
