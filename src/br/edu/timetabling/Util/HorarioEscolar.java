@@ -86,6 +86,7 @@ public class HorarioEscolar {
                             newCourse.setNumberOfLectures(Integer.valueOf(Util.buscaPalavra(Util.restante)));
                             newCourse.setMinWorkingDays(Integer.valueOf(Util.buscaPalavra(Util.restante)));
                             newCourse.setNumberOfStudents(Integer.valueOf(Util.restante));
+//                            System.out.println(newCourse.getName() + "ID: " + i);
                             this.courses.add(newCourse);
                         }
                         break;
@@ -115,6 +116,10 @@ public class HorarioEscolar {
                             for (int j = 1; j < qntMaterias; j++) {
                                 newCurricula.getCourses().add(this.buscaMateriaPorNome(Util.buscaPalavra(Util.restante)));
 
+                            }
+                            if(Util.restante.endsWith(" "))
+                            {
+                                Util.restante = Util.restante.substring(0, Util.restante.length() -1);
                             }
                             newCurricula.addCourse(this.buscaMateriaPorNome(Util.restante));
                             newCurricula.setCurriculaID(aux);
@@ -247,7 +252,6 @@ public class HorarioEscolar {
     }
 
     public Course buscaMateriaPorNome(String nome) {
-
         for (Course course : courses) {
             if (course.getName().equals(nome)) {
                 return course;

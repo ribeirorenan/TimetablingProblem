@@ -52,7 +52,7 @@ public class Curricula {
     }
 
     public boolean addCourse(Course course){
-        //course.setCourseCurriculaID(aux);
+        //course.setListOfCurriculaID(aux);
         this.courses.add(course);
         return true;
     }

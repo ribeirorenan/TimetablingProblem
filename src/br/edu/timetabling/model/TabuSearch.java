@@ -45,9 +45,7 @@ public class TabuSearch {
 
         for (Curricula curricula: curriculas) {
             for (Course course: curricula.getCourses()) {
-                if (course != null){
-                    course.setCourseCurriculaID(curricula.getCurriculaID());
-                }
+                course.addCurrilaID(curricula.getCurriculaID());
             }
         }
 
@@ -88,13 +86,13 @@ public class TabuSearch {
                         }
                         listOfCourseTimes.remove(courseTimePosition);
                     }
+
                 }
             }
-
+            System.out.println("Não inseridas do curso " +course.getName() + ": " + course.getNotInsertedLectures());
+//            System.out.println(course.getName() + " " + course.getListOfCurriculaID().toString());
         }
-        timeTable.toString(1, timeTable.getPeriodsOfDay(), timeTable.getRooms());
-        timeTable.switchCourses(new CourseTime(0,0,0), new CourseTime(0,0,1));
-        System.out.println("\n\n\n");
+
 
         return null;
     }
@@ -162,8 +160,8 @@ public class TabuSearch {
      */
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
         for (int i = 0; i < timeTable.getRooms(); i++) {
-            if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getCourseCurriculaID() == course.getCourseCurriculaID()){
-                //System.out.println(course.getName() + " " + course.getCourseCurriculaID());
+            if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getListOfCurriculaID() == course.getListOfCurriculaID()){
+                //System.out.println(course.getName() + " " + course.getListOfCurriculaID());
                 return false;
             }
         }

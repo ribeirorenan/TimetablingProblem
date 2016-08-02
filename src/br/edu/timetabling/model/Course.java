@@ -14,7 +14,7 @@ public class Course {
     private int numberOfStudents;
     private List<UnavailabiltyConstraint> unavailabiltyConstraints;
     private CourseTime courseTime;
-    private int courseCurriculaID;
+    private List<Integer> listOfCurriculaID;
 
     /* Gambiarra - Contador para comparar o numero de leituras com as inseridas */
     private int countInsertedLectures;
@@ -23,6 +23,7 @@ public class Course {
 
     public Course() {
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
+        this.listOfCurriculaID = new ArrayList<Integer>();
     }
 
     public Course(String name, Teacher teacher, int numberOfLectures, int minWorkingDays, int numberOfStudents) {
@@ -34,7 +35,7 @@ public class Course {
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
         this.courseTime = new CourseTime(0, 0, 0);
         this.countInsertedLectures = 0;
-        this.courseCurriculaID = 0;
+        this.listOfCurriculaID = new ArrayList<Integer>();
     }
 
 
@@ -49,9 +50,8 @@ public class Course {
 
     public int getNotInsertedLectures(){
         if(countInsertedLectures != numberOfLectures){
-            return countInsertedLectures;
+            return numberOfLectures - countInsertedLectures;
         }
-
         return 0;
     }
 
@@ -72,6 +72,8 @@ public class Course {
     /*
      * Getters and Setters
      */
+
+
 
 
     public CourseTime getCourseTime() {
@@ -130,12 +132,16 @@ public class Course {
         this.numberOfStudents = numberOfStudents;
     }
 
-    public int getCourseCurriculaID() {
-        return courseCurriculaID;
+    public List<Integer> getListOfCurriculaID() {
+        return listOfCurriculaID;
     }
 
-    public void setCourseCurriculaID(int courseCurriculaID) {
-        this.courseCurriculaID = courseCurriculaID;
+    public void addCurrilaID(Integer id){
+        listOfCurriculaID.add(id);
+    }
+
+    public void setListOfCurriculaID(List<Integer> listOfCurriculaID) {
+        this.listOfCurriculaID = listOfCurriculaID;
     }
 
     public boolean addUnavailabilityConstraints(UnavailabiltyConstraint unavailabiltyConstraint){

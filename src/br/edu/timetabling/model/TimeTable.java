@@ -41,7 +41,12 @@ public class TimeTable {
         return false;
     }
 
-//    TODO implement this funcition
+    /**
+     * Troca os cursos de horário dentro da tabela de cursos
+     * @param courseTime1
+     * @param courseTime2
+     * @return
+     */
     public boolean switchCourses(CourseTime courseTime1, CourseTime courseTime2){
         Course courseAux = getCourseByCourseTime(courseTime1);
 
