@@ -135,9 +135,10 @@ public class TabuSearch {
         return roomsAvailableCapacity;
     }
     private boolean getAvailableRoomsCapacity(Course course, CourseTime courseTime){
-        if(course.getNumberOfLectures() <= rooms.get(courseTime.getRoom()).getCapacity()){
+        if(course.getNumberOfStudents() <= rooms.get(courseTime.getRoom()).getCapacity()){
             return true;
         }
+
         return false;
     }
 
@@ -162,6 +163,7 @@ public class TabuSearch {
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
         for (int i = 0; i < timeTable.getRooms(); i++) {
             if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getCourseCurriculaID() == course.getCourseCurriculaID()){
+                //System.out.println(course.getName() + " " + course.getCourseCurriculaID());
                 return false;
             }
         }
