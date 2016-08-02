@@ -30,7 +30,7 @@ public class Main {
 
         tabuSearch.start();
 
-//        tabuSearch.getTimeTable().toString(days, periods, rooms);
+        tabuSearch.getTimeTable().toString(1, periods, rooms);
 
     }
 }

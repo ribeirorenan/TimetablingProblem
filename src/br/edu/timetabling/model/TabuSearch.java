@@ -1,5 +1,7 @@
 package br.edu.timetabling.model;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -98,6 +100,8 @@ public class TabuSearch {
 
         System.out.println(fitness);
 
+        timeTable.toString(1, timeTable.getPeriodsOfDay(), timeTable.getRooms());
+
         tabuSearchAlgorithm();
         System.out.println(fitness);
 
@@ -116,14 +120,19 @@ public class TabuSearch {
                         if(getAvailableRoomsCapacity(horario[i][j][k], horario[i][j][k].getCourseTime())){
                             score+= 100;
                         }
+                        else
                         //Verifica as soft Constraints
                         if(getAvailableTimes(horario[i][j][k], horario[i][j][k].getCourseTime())){
                             score+= 100;
+                        }
+                        else{
+                            score -= 50;
                         }
                         //verifica se não tem conflito de disciplinas do memso curriculo no memso horario
                         if(checkScheduleConflict(horario[i][j][k], horario[i][j][k].getCourseTime())){
                             score += 100;
                         }
+
                 }
             }
         }
@@ -137,9 +146,10 @@ public class TabuSearch {
         int period1, period2;
         int room1, room2;
 
-        Random random = new Random();
 
-        for (int i = 0; i < 9999999; i++) {
+
+        for (int i = 0; i < 99999999; i++) {
+            Random random = new Random();
             day1 = random.nextInt(timeTable.getDays());
             day2 = random.nextInt(timeTable.getDays());
 
@@ -149,11 +159,12 @@ public class TabuSearch {
             room1 = random.nextInt(timeTable.getRooms());
             room2 = random.nextInt(timeTable.getRooms());
 
-
             //realiza o switch
 
-            if(timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1), timeTable.getTabuList())){
+            if(!timeTable.switchCourses(new CourseTime(0, period1, room1), new CourseTime(0, period2, room2), timeTable.getTabuList())){
                 timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
+                System.out.println("Primeira Troca: " + 0 + " " + " "+ period1 + " " +  room1);
+                System.out.println("Primeira Troca: " + 0 + " " + " "+ period2 + " " +  room2);
             }
 
 //            timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
@@ -165,6 +176,10 @@ public class TabuSearch {
 //            {
 //                fitness = objectiveFunction();
 //            }
+        }
+        for (SwitchCourseTime switchCourseTime :
+                timeTable.getTabuList()) {
+            switchCourseTime.toString();
         }
 
     }

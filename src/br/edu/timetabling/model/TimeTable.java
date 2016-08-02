@@ -64,13 +64,15 @@ public class TimeTable {
     /*
      * Se já tiver na lista tabu não realiza o movimento
      */
-    public boolean switchCourses(CourseTime courseTime1, CourseTime courseTime2, List<SwitchCourseTime> switchCourseTimes){
+    public boolean switchCourses(CourseTime courseTime1, CourseTime courseTime2, List<SwitchCourseTime> tabuList){
         Course courseAux = getCourseByCourseTime(courseTime1);
 
-        for (SwitchCourseTime switchCourseTime : switchCourseTimes) {
-            if (switchCourseTime.verifyCourseTimeSwitch(courseTime1, courseTime2)) {
+        for (SwitchCourseTime switchCourseTime : tabuList) {
+            if (switchCourseTime.verifyTabu(switchCourseTime, new SwitchCourseTime(courseTime1, courseTime2))) {
                 return false;
             }
+
+
         }
         this.horario[courseTime1.getDay()][courseTime1.getPeriodOfday()][courseTime1.getRoom()] = this.horario[courseTime1.getDay()][courseTime2.getPeriodOfday()][courseTime2.getRoom()];
         this.horario[courseTime1.getDay()][courseTime2.getPeriodOfday()][courseTime2.getRoom()] = courseAux;
