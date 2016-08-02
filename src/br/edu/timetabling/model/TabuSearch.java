@@ -91,9 +91,6 @@ public class TabuSearch {
 
                 }
             }
-
-            System.out.println("Não inseridas do curso " +course.getName() + ": " + course.getNotInsertedLectures());
-//            System.out.println(course.getName() + " " + course.getListOfCurriculaID().toString());
         }
 
         fitness = objectiveFunction();
@@ -195,16 +192,6 @@ public class TabuSearch {
      * Funções auxiliares
      */
 
-    private List<Course> getTopDownCourseList(){
-
-
-        for (Course course : courses) {
-
-        }
-
-        return null;
-    }
-
     private List<Room> getAvailableRoomsCapacity(Course course){
         List<Room> roomsAvailableCapacity = new ArrayList<Room>();
 
@@ -259,8 +246,6 @@ public class TabuSearch {
     private int getResumeFromCourse (Course course){
 
         int i = 0;
-
-
         for (Curricula curricula: curriculas) {
             if (curricula.getCourses().contains(course)){
 
