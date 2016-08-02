@@ -151,15 +151,20 @@ public class TabuSearch {
 
 
             //realiza o switch
-            timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
 
-            if(objectiveFunction() < fitness){
-                timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1));
+            if(timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1), timeTable.getTabuList())){
+                timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
             }
-            else
-            {
-                fitness = objectiveFunction();
-            }
+
+//            timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
+//
+//            if(objectiveFunction() < fitness){
+//                timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1));
+//            }
+//            else
+//            {
+//                fitness = objectiveFunction();
+//            }
         }
 
     }

@@ -61,6 +61,22 @@ public class TimeTable {
         return true;
     }
 
+    /*
+     * Se já tiver na lista tabu não realiza o movimento
+     */
+    public boolean switchCourses(CourseTime courseTime1, CourseTime courseTime2, List<SwitchCourseTime> switchCourseTimes){
+        Course courseAux = getCourseByCourseTime(courseTime1);
+
+        for (SwitchCourseTime switchCourseTime : switchCourseTimes) {
+            if (switchCourseTime.verifyCourseTimeSwitch(courseTime1, courseTime2)) {
+                return false;
+            }
+        }
+        this.horario[courseTime1.getDay()][courseTime1.getPeriodOfday()][courseTime1.getRoom()] = this.horario[courseTime1.getDay()][courseTime2.getPeriodOfday()][courseTime2.getRoom()];
+        this.horario[courseTime1.getDay()][courseTime2.getPeriodOfday()][courseTime2.getRoom()] = courseAux;
+        return true;
+    }
+
 
     public void addTabu(CourseTime courseTime1, CourseTime courseTime2){
         tabuList.add(new SwitchCourseTime(courseTime1, courseTime2));

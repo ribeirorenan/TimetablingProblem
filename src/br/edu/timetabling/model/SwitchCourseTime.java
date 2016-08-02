@@ -18,6 +18,19 @@ public class SwitchCourseTime {
     }
 
 
+
+    public boolean verifyCourseTimeSwitch(CourseTime courseTime1, CourseTime courseTime2){
+        if((courseTime1 == this.courseTime1) && (courseTime2 == this.courseTime2)){
+            return false;
+        }
+
+        return true;
+    }
+
+    /*
+     * Getters and Setters
+     */
+
     public CourseTime getCourseTime1() {
         return courseTime1;
     }
