@@ -54,7 +54,7 @@ public class HorarioEscolar {
                     case "Name":
                         this.setNome(Util.restante);
                         break;
-                    case "Courses":
+                    case "Course":
                         this.setQntMaterias(Integer.valueOf(Util.restante));
                         break;
                     case "Rooms":
