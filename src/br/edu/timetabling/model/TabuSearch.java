@@ -100,7 +100,7 @@ public class TabuSearch {
 
         System.out.println(fitness);
 
-        timeTable.toString(1, timeTable.getPeriodsOfDay(), timeTable.getRooms());
+        timeTable.toString(timeTable.getDays(), timeTable.getPeriodsOfDay(), timeTable.getRooms());
 
         tabuSearchAlgorithm();
         System.out.println(fitness);
@@ -148,7 +148,7 @@ public class TabuSearch {
 
 
 
-        for (int i = 0; i < 99999999; i++) {
+        for (int i = 0; i < 999999; i++) {
             Random random = new Random();
             day1 = random.nextInt(timeTable.getDays());
             day2 = random.nextInt(timeTable.getDays());
@@ -160,26 +160,23 @@ public class TabuSearch {
             room2 = random.nextInt(timeTable.getRooms());
 
             //realiza o switch
+//
+//            if(!timeTable.switchCourses(new CourseTime(0, period1, room1), new CourseTime(0, period2, room2), timeTable.getTabuList())){
+//                timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
+//                System.out.println("Primeira Troca: " + 0 + " " + " "+ period1 + " " +  room1);
+//                System.out.println("Primeira Troca: " + 0 + " " + " "+ period2 + " " +  room2);
+//            }
 
-            if(!timeTable.switchCourses(new CourseTime(0, period1, room1), new CourseTime(0, period2, room2), timeTable.getTabuList())){
-                timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
-                System.out.println("Primeira Troca: " + 0 + " " + " "+ period1 + " " +  room1);
-                System.out.println("Primeira Troca: " + 0 + " " + " "+ period2 + " " +  room2);
+            timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
+
+            if(objectiveFunction() <= fitness){
+                timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1));
+            }
+            else
+            {
+                fitness = objectiveFunction();
             }
 
-//            timeTable.addTabu(new CourseTime(day1, period1, room1), new CourseTime(day2, period2, room2));
-//
-//            if(objectiveFunction() < fitness){
-//                timeTable.switchCourses(new CourseTime(day2, period2, room2), new CourseTime(day1, period1, room1));
-//            }
-//            else
-//            {
-//                fitness = objectiveFunction();
-//            }
-        }
-        for (SwitchCourseTime switchCourseTime :
-                timeTable.getTabuList()) {
-            switchCourseTime.toString();
         }
 
     }
