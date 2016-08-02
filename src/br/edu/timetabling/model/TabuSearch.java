@@ -56,7 +56,6 @@ public class TabuSearch {
             for (int i = 0; i < timeTable.getDays(); i++) {
                 for (int j = 0; j < timeTable.getPeriodsOfDay(); j++) {
                     for (int k = 0; k < timeTable.getRooms(); k++) {
-
                         //obtem lista de courseTimes disponíveis
                         if(courseTimeAvailable(course, new CourseTime(i, j, k))){
                             listOfCourseTimes.add(new CourseTime(i, j, k));
@@ -161,7 +160,7 @@ public class TabuSearch {
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
         for (int i = 0; i < timeTable.getRooms(); i++) {
             if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getListOfCurriculaID() == course.getListOfCurriculaID()){
-                //System.out.println(course.getName() + " " + course.getListOfCurriculaID());
+                System.out.println(course.getName() + " " + course.getListOfCurriculaID());
                 return false;
             }
         }
