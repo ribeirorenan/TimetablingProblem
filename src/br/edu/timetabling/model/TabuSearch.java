@@ -51,7 +51,7 @@ public class TabuSearch {
                 for (int j = 0; j < timeTable.getPeriodsOfDay(); j++) {
                     for (int k = 0; k < timeTable.getRooms(); k++) {
 
-
+                        //obtem lista de courseTimes disponíveis
                         if(courseTimeAvailable(course, new CourseTime(i, j, k))){
                             listOfCourseTimes.add(new CourseTime(i, j, k));
                         }
@@ -69,16 +69,19 @@ public class TabuSearch {
                     while(!listOfCourseTimes.isEmpty()){
                         Random random = new Random();
                         int courseTimePosition = random.nextInt(listOfCourseTimes.size());
-                        if (checkScheduleConflict(course, listOfCourseTimes.get(courseTimePosition))) {
-                            if (timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition))) {
+                        if (checkScheduleConflict(course, listOfCourseTimes.get(courseTimePosition))) { //checa se não há aula no mesmo horário
+                            if (timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition))) { //checa se foi possível adicionar na timetable
+                                course.incrementCountOfInsertedLectures();
                                 listOfCourseTimes.remove(courseTimePosition);
                                 break;
                             }
                         }
                         listOfCourseTimes.remove(courseTimePosition);
                     }
-
                 }
+            }
+            if(!course.isAllLecturesInserted()){
+                System.out.println("É HORA DO SHOW: " + course.getNotInsertedLectures());
             }
         }
 
@@ -127,6 +130,9 @@ public class TabuSearch {
         return false;
     }
 
+    /*
+     * Verifica se está inserindo na restrição do curso
+     */
     private boolean getAvailableTimes(Course course, CourseTime courseTime){
 
         List<UnavailabiltyConstraint> constraintList = course.getUnavailabiltyConstraints();
@@ -139,6 +145,9 @@ public class TabuSearch {
         return true;
     }
 
+    /*
+     *
+     */
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
 
         for (int i = 0; i < timeTable.getRooms(); i++) {

@@ -15,6 +15,9 @@ public class Course {
     private List<UnavailabiltyConstraint> unavailabiltyConstraints;
     private CourseTime courseTime;
 
+    /* Gambiarra - Contador para comparar o numero de leituras com as inseridas */
+    private int countInsertedLectures;
+
     static final Course FREE = new Course("free", Teacher.TEACHER, Integer.BYTES, Integer.MIN_VALUE, Integer.MIN_VALUE);
 
     public Course() {
@@ -29,6 +32,52 @@ public class Course {
         this.numberOfStudents = numberOfStudents;
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
         this.courseTime = new CourseTime(0, 0, 0);
+        this.countInsertedLectures = 0;
+    }
+
+
+    public boolean isAllLecturesInserted(){
+        if(countInsertedLectures == numberOfLectures){
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public int getNotInsertedLectures(){
+        if(countInsertedLectures != numberOfLectures){
+            return countInsertedLectures;
+        }
+
+        return 0;
+    }
+
+    public void incrementCountOfInsertedLectures(){
+        countInsertedLectures += 1;
+    }
+
+
+
+    /*
+     * Getters and Setters
+     */
+
+
+    public CourseTime getCourseTime() {
+        return courseTime;
+    }
+
+    public void setCourseTime(CourseTime courseTime) {
+        this.courseTime = courseTime;
+    }
+
+    public int getCountInsertedLectures() {
+        return countInsertedLectures;
+    }
+
+    public void setCountInsertedLectures(int countInsertedLectures) {
+        this.countInsertedLectures = countInsertedLectures;
     }
 
     public String getName() {
