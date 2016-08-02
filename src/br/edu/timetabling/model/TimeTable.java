@@ -1,7 +1,5 @@
 package br.edu.timetabling.model;
 
-import java.util.Arrays;
-
 /**
  * Created by renan
  */
@@ -44,8 +42,12 @@ public class TimeTable {
     }
 
 //    TODO implement this funcition
-    public boolean switchCourses(){
-        return false;
+    public boolean switchCourses(CourseTime courseTime1, CourseTime courseTime2){
+        Course courseAux = getCourseByCourseTime(courseTime1);
+
+        this.horario[courseTime1.getDay()][courseTime1.getPeriodOfday()][courseTime1.getRoom()] = this.horario[courseTime1.getDay()][courseTime2.getPeriodOfday()][courseTime2.getRoom()];
+        this.horario[courseTime1.getDay()][courseTime2.getPeriodOfday()][courseTime2.getRoom()] = courseAux;
+        return true;
     }
 
 
@@ -65,6 +67,10 @@ public class TimeTable {
     /*
      * Getters and Setters
      */
+
+    public Course getCourseByCourseTime(CourseTime courseTime){
+        return this.horario[courseTime.getDay()][courseTime.getPeriodOfday()][courseTime.getRoom()];
+    }
 
     public Course[][][] getTimeTable() {
         return horario;

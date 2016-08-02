@@ -11,7 +11,7 @@ import br.edu.timetabling.model.TimeTable;
 public class Main {
     public static void main(String[] args) {
         HorarioEscolar horarioEscolar = new HorarioEscolar();
-        horarioEscolar.constroiHorarioPorArquivo("/home/renan/IdeaProjects/TimetablingProblem/instancias/comp14.ctt");
+        horarioEscolar.constroiHorarioPorArquivo("/home/renan/IdeaProjects/TimetablingProblem/instancias/comp02.ctt");
         //horarioEscolar.toString();
 
         int days = horarioEscolar.getDiasLetivos();
@@ -29,7 +29,7 @@ public class Main {
         TabuSearch tabuSearch = horarioEscolar.getTabuSearch();
         tabuSearch.start();
 
-        tabuSearch.getTimeTable().toString(days, periods, rooms);
+        tabuSearch.getTimeTable().toString(1, periods, rooms);
 
     }
 }

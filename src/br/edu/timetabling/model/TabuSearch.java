@@ -90,10 +90,11 @@ public class TabuSearch {
                     }
                 }
             }
-            if(!course.isAllLecturesInserted()){
-                System.out.println("É HORA DO SHOW:  " + course.getNotInsertedLectures());
-            }
+
         }
+        timeTable.toString(1, timeTable.getPeriodsOfDay(), timeTable.getRooms());
+        timeTable.switchCourses(new CourseTime(0,0,0), new CourseTime(0,0,1));
+        System.out.println("\n\n\n");
 
         return null;
     }
@@ -229,6 +230,5 @@ public class TabuSearch {
     public void setVirtualRoom(ArrayList<Room> virtualRoom) {
         this.virtualRoom = virtualRoom;
     }
-
 
 }
