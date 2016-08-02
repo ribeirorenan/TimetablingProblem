@@ -5,13 +5,13 @@
  */
 package br.edu.timetabling.Util;
 
-import java.util.ArrayList;
-import java.util.List;
+import br.edu.timetabling.model.*;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import br.edu.timetabling.model.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HorarioEscolar {
 
@@ -44,6 +44,8 @@ public class HorarioEscolar {
             BufferedReader lerArq = new BufferedReader(arq);
 
             String linha = lerArq.readLine();
+
+            int aux = 0;
 
             while (linha != null) {
 
@@ -115,9 +117,11 @@ public class HorarioEscolar {
 
                             }
                             newCurricula.addCourse(this.buscaMateriaPorNome(Util.restante));
+                            newCurricula.setCurriculaID(aux);
+                            aux++;
                             this.curriculas.add(newCurricula);
-
                         }
+
                         break;
                     }
 

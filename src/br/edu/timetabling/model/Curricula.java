@@ -10,10 +10,12 @@ public class Curricula {
     private String curriculumId;
     private int numberOfCourses;
     private List<Course> courses;
+    private int curriculaID;
 
     public Curricula() {
         courses = new ArrayList<>();
     }
+
 
 
     public String getCurriculumId() {
@@ -28,6 +30,7 @@ public class Curricula {
         return numberOfCourses;
     }
 
+
     public void setNumberOfCourses(int numberOfCourses) {
         this.numberOfCourses = numberOfCourses;
     }
@@ -40,7 +43,16 @@ public class Curricula {
         this.courses = courses;
     }
 
+    public int getCurriculaID() {
+        return curriculaID;
+    }
+
+    public void setCurriculaID(int curriculaID) {
+        this.curriculaID = curriculaID;
+    }
+
     public boolean addCourse(Course course){
+        //course.setCourseCurriculaID(aux);
         this.courses.add(course);
         return true;
     }

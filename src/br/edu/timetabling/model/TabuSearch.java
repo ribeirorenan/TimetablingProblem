@@ -43,6 +43,14 @@ public class TabuSearch {
      */
     private TimeTable initialSolution() {
 
+        for (Curricula curricula: curriculas) {
+            for (Course course: curricula.getCourses()) {
+                if (course != null){
+                    course.setCourseCurriculaID(curricula.getCurriculaID());
+                }
+            }
+        }
+
         for (Course course : courses) {
             //Lista com os CourseTimes disponíveis para cada curso
             List<CourseTime> listOfCourseTimes = new ArrayList<CourseTime>();
@@ -70,18 +78,20 @@ public class TabuSearch {
                         Random random = new Random();
                         int courseTimePosition = random.nextInt(listOfCourseTimes.size());
                         if (checkScheduleConflict(course, listOfCourseTimes.get(courseTimePosition))) { //checa se não há aula no mesmo horário
+
                             if (timeTable.addCourse(course, listOfCourseTimes.get(courseTimePosition))) { //checa se foi possível adicionar na timetable
                                 course.incrementCountOfInsertedLectures();
                                 listOfCourseTimes.remove(courseTimePosition);
                                 break;
                             }
+
                         }
                         listOfCourseTimes.remove(courseTimePosition);
                     }
                 }
             }
             if(!course.isAllLecturesInserted()){
-                System.out.println("É HORA DO SHOW: " + course.getNotInsertedLectures());
+                System.out.println("É HORA DO SHOW:  " + course.getNotInsertedLectures());
             }
         }
 
@@ -146,12 +156,11 @@ public class TabuSearch {
     }
 
     /*
-     *
+     * Verifica se há conflito de Courses no mesmo horário em salas diferentes
      */
     private boolean checkScheduleConflict(Course course, CourseTime courseTime){
-
         for (int i = 0; i < timeTable.getRooms(); i++) {
-            if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getName().equals(course.getName())){
+            if (timeTable.getTimeTable()[courseTime.getDay()][courseTime.getPeriodOfday()][i].getCourseCurriculaID() == course.getCourseCurriculaID()){
                 return false;
             }
         }
@@ -159,6 +168,22 @@ public class TabuSearch {
         return true;
     }
 
+    /*
+     * Obtém o indice de uma currícula de um determinado curso passado por parâmetro
+     */
+    private int getResumeFromCourse (Course course){
+
+        int i = 0;
+
+
+        for (Curricula curricula: curriculas) {
+            if (curricula.getCourses().contains(course)){
+
+            }
+        }
+
+        return 0;
+    }
 
 
     /*

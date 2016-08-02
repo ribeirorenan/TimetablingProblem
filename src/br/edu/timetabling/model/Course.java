@@ -14,6 +14,7 @@ public class Course {
     private int numberOfStudents;
     private List<UnavailabiltyConstraint> unavailabiltyConstraints;
     private CourseTime courseTime;
+    private int courseCurriculaID;
 
     /* Gambiarra - Contador para comparar o numero de leituras com as inseridas */
     private int countInsertedLectures;
@@ -33,6 +34,7 @@ public class Course {
         this.unavailabiltyConstraints = new ArrayList<UnavailabiltyConstraint>();
         this.courseTime = new CourseTime(0, 0, 0);
         this.countInsertedLectures = 0;
+        this.courseCurriculaID = 0;
     }
 
 
@@ -51,6 +53,14 @@ public class Course {
         }
 
         return 0;
+    }
+
+    public boolean remainingLecturesIsPair  (){
+        if (((getNumberOfLectures() - getCountInsertedLectures()) % 2) == 0){
+            return true;
+        }
+
+        return false;
     }
 
     public void incrementCountOfInsertedLectures(){
@@ -120,6 +130,13 @@ public class Course {
         this.numberOfStudents = numberOfStudents;
     }
 
+    public int getCourseCurriculaID() {
+        return courseCurriculaID;
+    }
+
+    public void setCourseCurriculaID(int courseCurriculaID) {
+        this.courseCurriculaID = courseCurriculaID;
+    }
 
     public boolean addUnavailabilityConstraints(UnavailabiltyConstraint unavailabiltyConstraint){
         this.unavailabiltyConstraints.add(unavailabiltyConstraint);
@@ -136,6 +153,7 @@ public class Course {
                 ", numberOfStudents=" + numberOfStudents +
                 '}';
     }
+
 
     public String toStringName() {
         return "Course{" +
